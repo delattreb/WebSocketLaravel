@@ -40,7 +40,6 @@ class PostCreatedEvent implements ShouldBroadcast
         return new Channel('chan-demo');
     }
 
-
     /* Exemple pour filtrer le broacast
     public function broadcastWith(){
         return [
