@@ -9,8 +9,9 @@ class PostController extends Controller
 {
     public function index()
     {
-        $event = new PostCreatedEvent(['name' => 'titre']);
-        event($event);
+        $event = new PostCreatedEvent(['ws_name' => 'COVAGE', 'ws_data' => 'Some Datas']);
+        //event($event);
+        broadcast($event)->toOthers();
         dd();
     }
 }

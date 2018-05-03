@@ -12,5 +12,10 @@
 */
 
 Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+    return (int)$user->id === (int)$id;
+});
+
+
+Broadcast::channel('group.{id}', function ($user, $id) {
+    return (int)$user->group_id === (int)$id;
 });

@@ -10,23 +10,23 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PostCreatedEvent implements ShouldBroadcast
+class GroupWizzEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     /**
-     * @var array
+     * @var Group
      */
-    public $post;
-
+    private $id;
 
     /**
      * Create a new event instance.
      *
-     * @param array $post
+     * @param Group $group
      */
-    public function __construct(array $post)
+    public function __construct($id)
     {
-        $this->post = $post;
+        //
+        $this->id = $id;
     }
 
     /**
@@ -36,20 +36,11 @@ class PostCreatedEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('chan-demo');
+        return new PrivateChannel("group.$this->id");
     }
 
     public function broadcastAs()
     {
-        return 'ws_emit';
+        return 'wizz';
     }
-
-
-    /* Exemple pour filtrer le broacast
-    public function broadcastWith(){
-        return [
-            'titre' => $this->post['name']
-        ];
-    }
-*/
 }
