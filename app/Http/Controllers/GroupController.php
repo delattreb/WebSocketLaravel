@@ -17,10 +17,7 @@ class GroupController extends Controller
 
     public function notify(int $group_id)
     {
-       //$group = Group::find($group_id)->first();
-
-
-        broadcast(new GroupWizzEvent($group_id));
+        broadcast(new GroupWizzEvent($group_id, ['ws_name' => 'COVAGE', 'ws_data' => 'Some Datas']));
         return redirect()->back();
     }
 }

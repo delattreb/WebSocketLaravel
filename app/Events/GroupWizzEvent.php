@@ -17,16 +17,18 @@ class GroupWizzEvent implements ShouldBroadcast
      * @var Group
      */
     private $id;
+    public $post;
 
     /**
      * Create a new event instance.
      *
      * @param Group $group
      */
-    public function __construct($id)
+    public function __construct($id, array $post)
     {
         //
         $this->id = $id;
+        $this->post = $post;
     }
 
     /**
